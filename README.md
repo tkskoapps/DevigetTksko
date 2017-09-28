@@ -1,7 +1,7 @@
 # Android
 
 ## Assignment
-Your assignment is to create a simple Reddit client that shows the top 50 entries from [Reddit] (www.reddit.com/top)
+Your assignment is to create a simple Reddit client that shows the top 50 entries from [Reddit](www.reddit.com/top)
 
 ## Guidelines:
     - Assume latest Android platform
@@ -26,8 +26,8 @@ In addition, for those having a picture (besides the thumbnail), please allow th
 
 Some resources
 
-[Reddit API] (http://www.reddit.com/dev/api)
-[Apigee] (https://apigee.com/console/reddit)
+[Reddit API](http://www.reddit.com/dev/api)
+[Apigee](https://apigee.com/console/reddit)
 example JSON file (top.JSON) is listed.
 
 Please reply-all when you are finished.
