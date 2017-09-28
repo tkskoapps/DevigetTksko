@@ -26,8 +26,8 @@ In addition, for those having a picture (besides the thumbnail), please allow th
 
 Some resources
 
-[Reddit API](http://www.reddit.com/dev/api)
-[Apigee](https://apigee.com/console/reddit)
-example JSON file (top.JSON) is listed.
+    - [Reddit API](http://www.reddit.com/dev/api)
+    - [Apigee](https://apigee.com/console/reddit)
+    - Example JSON file (top.JSON) is listed.
 
 Please reply-all when you are finished.
