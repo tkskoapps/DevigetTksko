@@ -1,7 +1,7 @@
 # Android
 
 ## Assignment
-Your assignment is to create a simple Reddit client that shows the top 50 entries from [reddit] www.reddit.com/top
+Your assignment is to create a simple Reddit client that shows the top 50 entries from [Reddit] (www.reddit.com/top)
 
 ## Guidelines:
     - Assume latest Android platform
@@ -20,13 +20,14 @@ In addition, for those having a picture (besides the thumbnail), please allow th
 
 ## Support
     - Pagination support (10 items per page)
-    - Saving pictures in the picture gallery - allow the user to tap on the thumbnail to be sent to the full sized picture.  Opening in the URL is ok too.
+    - Saving pictures in the picture gallery 
+    - allow the user to tap on the thumbnail to be sent to the full sized picture.  Opening in the URL is ok too.
     - App state preservation/restoration
 
 Some resources
 
-Reddit API:  http://www.reddit.com/dev/api
-Apigee:  https://apigee.com/console/reddit
-example JSON file (top.JSON) is attached.
+[Reddit API] (http://www.reddit.com/dev/api)
+[Apigee] (https://apigee.com/console/reddit)
+example JSON file (top.JSON) is listed.
 
 Please reply-all when you are finished.
