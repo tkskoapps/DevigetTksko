@@ -1,5 +1,4 @@
 # Android
-Android
 
 ## Assignment
 Your assignment is to create a simple Reddit client that shows the top 50 entries from [reddit] www.reddit.com/top
@@ -10,6 +9,7 @@ Your assignment is to create a simple Reddit client that shows the top 50 entrie
 
 ## What to show
 The app should be able to show data from each entry such as:
+
     - Title (at its full length, so take this into account when sizing your cells)
     - Author
     - entry date, following a format like “x hours ago” 
@@ -27,6 +27,6 @@ Some resources
 
 Reddit API:  http://www.reddit.com/dev/api
 Apigee:  https://apigee.com/console/reddit
-example JSON file is attached.
+example JSON file (top.JSON) is attached.
 
 Please reply-all when you are finished.
