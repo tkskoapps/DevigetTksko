@@ -3,6 +3,11 @@
 ## Assignment
 Your assignment is to create a simple Reddit client that shows the top 50 entries from [Reddit](www.reddit.com/top)
 
+## Forking Procedures
+
+1.  Fork the repo to your own github account
+2.  When you have code ready to be review submit a pull request
+
 ## Guidelines:
     - Assume latest Android platform
     - Support Landscape
