@@ -20,19 +20,25 @@ The app should be able to show data from each entry such as:
     - entry date, following a format like “x hours ago” 
     - A thumbnail for those who have a picture.
     - Number of comments
+    - Unread status
 
-In addition, for those having a picture (besides the thumbnail), please allow the user to tap on the thumbnail to be sent to the full sized picture (so just opening the URL would be OK).
+In addition, for those having a picture (besides the thumbnail), please allow the user to tap on the thumbnail to be sent to the full sized picture. Opening the URL would be OK.
 
-## Support
-    - Pagination support (10 items per page)
-    - Saving pictures in the picture gallery 
-    - allow the user to tap on the thumbnail to be sent to the full sized picture.  Opening in the URL is ok too.
-    - App state preservation/restoration
+## What to Include
 
-Some resources
+    - Pull to Refresh
+    - Pagination support
+    - Saving pictures in the picture gallery
+    - App state-preservation/restoration
+    - Indicator of unread/read post (updated status, after post it’s selected)
+    - Dismiss Post Button (remove the cell from list. Animations required)
+    - Dismiss All Button (remove all posts. Animations required)
+    - Support split layout (left side: all posts / right side: detail post)
+
+## Resources
 
     - [Reddit API](http://www.reddit.com/dev/api)
     - [Apigee](https://apigee.com/console/reddit)
-    - Example JSON file (top.JSON) is listed.
+    - Example JSON file (top.json) is listed.
+    - Example Video of functionality is attached
 
-Please reply-all when you are finished.
