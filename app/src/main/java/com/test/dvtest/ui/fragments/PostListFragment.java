@@ -105,7 +105,7 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
 
         swipeRefreshLayout.setRefreshing(true);
 
-        presenter.getList();
+        presenter.getList(0, "");
 
     }
 
@@ -124,7 +124,7 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
     }
 
     @Override
-    public void onSuccessGetPosts(List newPosts) {
+    public void onSuccessGetPosts(List newPosts, boolean isFirstPage, String lastItemId) {
 
         swipeRefreshLayout.setRefreshing(false);
 

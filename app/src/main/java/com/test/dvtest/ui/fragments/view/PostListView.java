@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface PostListView extends BaseView {
 
-    void onSuccessGetPosts(List newPosts);
+    void onSuccessGetPosts(List newPosts, boolean isFirstPage, String lastItemId);
 
 }

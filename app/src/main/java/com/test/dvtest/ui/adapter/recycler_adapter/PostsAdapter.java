@@ -5,15 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.marlonlom.utilities.timeago.TimeAgo;
+import com.squareup.picasso.Picasso;
 import com.test.dvtest.R;
 import com.test.dvtest.ui.adapter.holder.PostViewHolder;
+import com.test.dvtest.ui.model.PostUIModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
-    private List<Object> list;
+    private List<PostUIModel> list;
 
     public PostsAdapter() {
 
@@ -32,9 +35,37 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
     @Override
     public void onBindViewHolder(final PostViewHolder holder, final int position) {
 
-        Object item = list.get(position);
+        final PostUIModel item = list.get(position);
 
         if (item != null) {
+
+            holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (!item.isRead()) {
+                        item.setRead(true);
+                        notifyItemChanged(position);
+                    }
+
+                }
+
+            });
+
+            Picasso.get()
+                    .load(item.getThumbnail())
+                    .placeholder(R.drawable.empty_placeholder)
+                    .into(holder.thumbnailView);
+
+            holder.titleView.setText(item.getTitle());
+
+            holder.authorView.setText(item.getAuthor());
+
+            holder.timeAgoView.setText(TimeAgo.using(item.getCreatedDate()));
+
+            holder.commentsView.setText(String.valueOf(item.getCommentsCount()));
+
+            holder.statusView.setVisibility(item.isRead() ? View.INVISIBLE : View.VISIBLE);
 
         }
 
