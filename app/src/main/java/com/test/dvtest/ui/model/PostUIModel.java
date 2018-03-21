@@ -1,6 +1,9 @@
 package com.test.dvtest.ui.model;
 
 import com.test.dvtest.data.model.PostDataEntity;
+import com.test.dvtest.util.BaseUtils;
+
+import java.io.IOException;
 
 public class PostUIModel {
 
@@ -19,6 +22,18 @@ public class PostUIModel {
     private long commentsCount;
 
     private boolean read;
+
+    public PostUIModel() {
+
+        this.id = "";
+        this.title = "";
+        this.author = "";
+        this.thumbnail = "";
+        this.url = "";
+        this.createdDate = 0;
+        this.commentsCount = 0;
+        this.read = false;
+    }
 
     public PostUIModel(PostDataEntity entity) {
 
@@ -94,5 +109,17 @@ public class PostUIModel {
 
     public void setRead(boolean read) {
         this.read = read;
+    }
+
+    public static PostUIModel fromString(String json) {
+
+        try {
+
+            return BaseUtils.getMapper().readValue(json, PostUIModel.class);
+
+        } catch (IOException e) {
+            return null;
+        }
+
     }
 }

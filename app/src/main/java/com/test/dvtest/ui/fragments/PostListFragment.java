@@ -10,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.test.dvtest.R;
+import com.test.dvtest.ui.activities.PostDetailActivity;
 import com.test.dvtest.ui.adapter.recycler_adapter.PostsAdapter;
 import com.test.dvtest.ui.fragments.presenter.PostListPresenter;
 import com.test.dvtest.ui.fragments.view.PostListView;
 import com.test.dvtest.ui.model.PostUIModel;
+import com.test.dvtest.util.BaseUtils;
 import com.test.dvtest.util.InfiniteOnScrollListener;
 
 import java.util.List;
@@ -167,6 +169,10 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
 
     @Override
     public void onPostClick(PostUIModel post) {
+
+        String postString = BaseUtils.getObjectAsJson(post);
+
+        startActivity(PostDetailActivity.getCallingIntent(getActivity(), postString));
 
     }
 
