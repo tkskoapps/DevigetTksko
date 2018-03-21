@@ -1,3 +1,7 @@
 <resources>
+
     <string name="app_name">DVTest</string>
+
+    <string name="msg_empty">No data to show.</string>
+
 </resources>
