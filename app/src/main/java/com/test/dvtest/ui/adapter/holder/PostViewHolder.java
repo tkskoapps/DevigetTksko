@@ -34,6 +34,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.list_item_post_comments_count)
     public TextView commentsView;
 
+    @BindView(R.id.list_item_post_button_delete)
+    public ImageView deleteView;
+
     public PostViewHolder(View itemView) {
 
         super(itemView);

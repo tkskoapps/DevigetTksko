@@ -13,6 +13,7 @@ import com.test.dvtest.R;
 import com.test.dvtest.ui.adapter.recycler_adapter.PostsAdapter;
 import com.test.dvtest.ui.fragments.presenter.PostListPresenter;
 import com.test.dvtest.ui.fragments.view.PostListView;
+import com.test.dvtest.ui.model.PostUIModel;
 import com.test.dvtest.util.InfiniteOnScrollListener;
 
 import java.util.List;
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
 
 import static com.test.dvtest.ui.config.AppConstants.POST_PAGE_SIZE;
 
-public class PostListFragment extends BaseFragment<PostListPresenter> implements PostListView {
+public class PostListFragment extends BaseFragment<PostListPresenter> implements PostListView, PostsAdapter.IPostAdapterListener {
 
     @BindView(R.id.view_recycle_view_list)
     RecyclerView recyclerView;
@@ -68,6 +69,7 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
         setRecyclerView();
 
         return view;
+
     }
 
     @Override
@@ -87,7 +89,7 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new PostsAdapter();
+        adapter = new PostsAdapter(this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
@@ -160,6 +162,11 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
         adapter.setLastItemId(lastItemId);
 
         setEmptyViewVisibility();
+
+    }
+
+    @Override
+    public void onPostClick(PostUIModel post) {
 
     }
 

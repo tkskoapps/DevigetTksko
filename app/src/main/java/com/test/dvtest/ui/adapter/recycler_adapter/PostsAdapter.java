@@ -20,10 +20,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
     private String lastItemId;
 
-    public PostsAdapter() {
+    private IPostAdapterListener listener;
+
+    public PostsAdapter(IPostAdapterListener listener) {
 
         this.list = new ArrayList();
         this.lastItemId = null;
+        this.listener = listener;
     }
 
     @Override
@@ -51,6 +54,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
                         notifyItemChanged(position);
                     }
 
+                    if (listener != null)
+                        listener.onPostClick(item);
+
                 }
 
             });
@@ -69,6 +75,17 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
             holder.commentsView.setText(String.valueOf(item.getCommentsCount()));
 
             holder.statusView.setVisibility(item.isRead() ? View.INVISIBLE : View.VISIBLE);
+
+            holder.deleteView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    list.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, list.size());
+
+                }
+            });
 
         }
 
@@ -116,6 +133,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
     public void setLastItemId(String lastItemId) {
         this.lastItemId = lastItemId;
+    }
+
+    public interface IPostAdapterListener {
+
+        void onPostClick(PostUIModel post);
+
     }
 
 }
