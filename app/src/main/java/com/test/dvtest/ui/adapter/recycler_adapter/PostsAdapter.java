@@ -18,9 +18,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
     private List<PostUIModel> list;
 
+    private String lastItemId;
+
     public PostsAdapter() {
 
         this.list = new ArrayList();
+        this.lastItemId = null;
     }
 
     @Override
@@ -82,16 +85,37 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
         return getItemCount() == 0;
     }
 
-    public void updateList(List list) {
+    public void updateList(List list, boolean isFirstPage) {
 
-        int count = this.list.size();
+        if (isFirstPage) {
 
-        this.list = list;
+            int count = this.list.size();
 
-        this.notifyItemRangeRemoved(0, count);
+            this.lastItemId = null;
+            this.list = list;
 
-        this.notifyItemRangeInserted(0, this.list.size());
+            this.notifyItemRangeRemoved(0, count);
 
+            this.notifyItemRangeInserted(0, this.list.size());
+
+        } else {
+
+            int positionStart = this.list.size();
+
+            this.list.addAll(list);
+
+            this.notifyItemRangeInserted(positionStart, list.size());
+
+        }
+
+    }
+
+    public String getLastItemId() {
+        return lastItemId;
+    }
+
+    public void setLastItemId(String lastItemId) {
+        this.lastItemId = lastItemId;
     }
 
 }

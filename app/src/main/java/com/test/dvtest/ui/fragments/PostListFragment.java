@@ -13,11 +13,14 @@ import com.test.dvtest.R;
 import com.test.dvtest.ui.adapter.recycler_adapter.PostsAdapter;
 import com.test.dvtest.ui.fragments.presenter.PostListPresenter;
 import com.test.dvtest.ui.fragments.view.PostListView;
+import com.test.dvtest.util.InfiniteOnScrollListener;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.test.dvtest.ui.config.AppConstants.POST_PAGE_SIZE;
 
 public class PostListFragment extends BaseFragment<PostListPresenter> implements PostListView {
 
@@ -31,6 +34,8 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
     SwipeRefreshLayout swipeRefreshLayout;
 
     PostsAdapter adapter;
+
+    private InfiniteOnScrollListener infiniteOnScrollListener;
 
     public static PostListFragment newInstance() {
 
@@ -72,7 +77,7 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
 
         presenter.setView(this, this);
 
-        getList();
+        getList(0);
 
     }
 
@@ -92,20 +97,39 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
             @Override
             public void onRefresh() {
 
-                getList();
+                getList(0);
             }
         });
 
+        infiniteOnScrollListener = new InfiniteOnScrollListener(layoutManager, swipeRefreshLayout, null) {
+
+            @Override
+            public void onLoadMore(int page) {
+
+                getList(page);
+
+            }
+
+        };
+
+        recyclerView.addOnScrollListener(infiniteOnScrollListener);
+
     }
 
-    private void getList() {
+    private void getList(int pageNumber) {
 
-        if (adapter == null)
+        if (adapter == null || infiniteOnScrollListener == null)
             return;
+
+        if (pageNumber == 0) {
+            adapter.setLastItemId(null);
+            infiniteOnScrollListener.reset();
+        } else
+            infiniteOnScrollListener.setLoading(true);
 
         swipeRefreshLayout.setRefreshing(true);
 
-        presenter.getList(0, "");
+        presenter.getList(pageNumber, adapter.getLastItemId());
 
     }
 
@@ -126,9 +150,14 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
     @Override
     public void onSuccessGetPosts(List newPosts, boolean isFirstPage, String lastItemId) {
 
-        swipeRefreshLayout.setRefreshing(false);
+        infiniteOnScrollListener.setIsLimitReached(newPosts == null
+                || newPosts.isEmpty() || newPosts.size() < POST_PAGE_SIZE);
 
-        adapter.updateList(newPosts);
+        swipeRefreshLayout.setRefreshing(false);
+        infiniteOnScrollListener.setLoading(false);
+
+        adapter.updateList(newPosts, isFirstPage);
+        adapter.setLastItemId(lastItemId);
 
         setEmptyViewVisibility();
 

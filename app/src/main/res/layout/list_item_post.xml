@@ -49,6 +49,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
+                android:maxLines="5"
                 android:text="TITLE"
                 android:textColor="@color/black"
                 android:textSize="18sp"
