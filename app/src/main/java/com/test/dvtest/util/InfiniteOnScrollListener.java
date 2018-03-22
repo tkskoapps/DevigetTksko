@@ -1,6 +1,5 @@
 package com.test.dvtest.util;
 
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,11 +16,9 @@ public abstract class InfiniteOnScrollListener extends RecyclerView.OnScrollList
     private LinearLayoutManager mLinearLayoutManager;
     private SwipeRefreshLayout swipeRefreshLayout;
     private View mProgress;
-    private AppBarLayout appBarLayout;
 
     // if there is no more data to load, we stop fetching from the server
     private boolean isLimitReached = false;
-
 
     public InfiniteOnScrollListener(LinearLayoutManager linearLayoutManager,
                                     SwipeRefreshLayout swipeRefreshLayout,
@@ -29,32 +26,6 @@ public abstract class InfiniteOnScrollListener extends RecyclerView.OnScrollList
         this.mLinearLayoutManager = linearLayoutManager;
         this.swipeRefreshLayout = swipeRefreshLayout;
         this.mProgress = progress;
-
-    }
-
-    public InfiniteOnScrollListener(LinearLayoutManager linearLayoutManager,
-                                    SwipeRefreshLayout swipeRefreshLayout,
-                                    View progress,
-                                    AppBarLayout appBarLayout) {
-
-        this(linearLayoutManager, swipeRefreshLayout, progress);
-        this.appBarLayout = appBarLayout;
-
-        if (this.appBarLayout != null) {
-
-            this.appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-                @Override
-                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-
-                    boolean isExpanded = verticalOffset == 0;
-
-                    if (InfiniteOnScrollListener.this.swipeRefreshLayout != null)
-                        InfiniteOnScrollListener.this.swipeRefreshLayout.setEnabled(isExpanded);
-
-                }
-            });
-
-        }
 
     }
 
@@ -69,15 +40,11 @@ public abstract class InfiniteOnScrollListener extends RecyclerView.OnScrollList
         int firstVisibleItem = mLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
         int lastVisibleItem = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
 
-        boolean isAppBarExpanded = appBarLayout == null || (appBarLayout.getHeight() - appBarLayout.getBottom()) == 0;
-
-        // if the profile header is completely visible, the swipe to refresh is enabled
         if (swipeRefreshLayout != null) {
 
             swipeRefreshLayout.setEnabled(
                     firstVisibleItem == 0 &&
-                            (mProgress == null || mProgress.getVisibility() == View.GONE) &&
-                            isAppBarExpanded);
+                            (mProgress == null || mProgress.getVisibility() == View.GONE));
         }
 
         if (isLimitReached) return;

@@ -127,6 +127,16 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
     }
 
+    public void clearAllPosts() {
+
+        int count = list.size();
+
+        list.clear();
+
+        notifyItemRangeRemoved(0, count);
+
+    }
+
     public String getLastItemId() {
         return lastItemId;
     }

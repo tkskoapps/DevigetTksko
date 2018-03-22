@@ -22,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.test.dvtest.ui.config.AppConstants.POST_PAGE_SIZE;
 
@@ -140,6 +141,7 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
     private void setEmptyViewVisibility() {
 
         viewEmpty.setVisibility(adapter.isEmpty() ? View.VISIBLE : View.GONE);
+
     }
 
     @Override
@@ -173,6 +175,21 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
         String postString = BaseUtils.getObjectAsJson(post);
 
         startActivity(PostDetailActivity.getCallingIntent(getActivity(), postString));
+
+    }
+
+    @OnClick(R.id.fragment_post_list_button_remove_all)
+    public void onRemoveAllButtonClick() {
+
+        infiniteOnScrollListener.reset();
+
+        adapter.clearAllPosts();
+
+        swipeRefreshLayout.setEnabled(true);
+        
+        swipeRefreshLayout.setRefreshing(false);
+
+        setEmptyViewVisibility();
 
     }
 
