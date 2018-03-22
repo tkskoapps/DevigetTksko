@@ -181,6 +181,14 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
 
     }
 
+    @Override
+    public void onPostRemoved() {
+
+        if (getActivity() instanceof MainActivity)
+            ((MainActivity) getActivity()).clearPostDetail();
+
+    }
+
     @OnClick(R.id.fragment_post_list_button_remove_all)
     public void onRemoveAllButtonClick() {
 
@@ -193,6 +201,9 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
         swipeRefreshLayout.setRefreshing(false);
 
         setEmptyViewVisibility();
+
+        if (getActivity() instanceof MainActivity)
+            ((MainActivity) getActivity()).clearPostDetail();
 
     }
 

@@ -84,6 +84,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, list.size());
 
+                    if (listener != null)
+                        listener.onPostRemoved();
+
                 }
             });
 
@@ -148,6 +151,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
     public interface IPostAdapterListener {
 
         void onPostClick(PostUIModel post);
+
+        void onPostRemoved();
 
     }
 

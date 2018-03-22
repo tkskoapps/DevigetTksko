@@ -62,4 +62,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void clearPostDetail() {
+
+        if (landMode)
+            getSupportFragmentManager().
+                    beginTransaction().
+                    replace(R.id.activity_main_frame_layout_detail, PostDetailFragment.newInstance("")).
+                    commit();
+
+    }
+
 }
