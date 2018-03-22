@@ -85,4 +85,7 @@ dependencies {
     // Time Ago
     compile 'com.github.marlonlom:timeago:3.0.1'
 
+    // Recycler View Animations
+    compile "com.mikepenz:itemanimators:1.0.1@aar"
+
 }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mikepenz.itemanimators.ScaleUpAnimator;
 import com.test.dvtest.R;
 import com.test.dvtest.ui.activities.MainActivity;
 import com.test.dvtest.ui.adapter.recycler_adapter.PostsAdapter;
@@ -97,6 +98,8 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setItemAnimator(new ScaleUpAnimator());
 
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
