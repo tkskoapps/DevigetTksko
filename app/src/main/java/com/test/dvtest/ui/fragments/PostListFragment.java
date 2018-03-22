@@ -10,12 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.test.dvtest.R;
-import com.test.dvtest.ui.activities.PostDetailActivity;
+import com.test.dvtest.ui.activities.MainActivity;
 import com.test.dvtest.ui.adapter.recycler_adapter.PostsAdapter;
 import com.test.dvtest.ui.fragments.presenter.PostListPresenter;
 import com.test.dvtest.ui.fragments.view.PostListView;
 import com.test.dvtest.ui.model.PostUIModel;
-import com.test.dvtest.util.BaseUtils;
 import com.test.dvtest.util.InfiniteOnScrollListener;
 
 import java.util.List;
@@ -57,7 +56,9 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
 
         super.onCreate(savedInstanceState);
 
-        presenter = new PostListPresenter();
+        adapter = new PostsAdapter(this);
+
+        setRetainInstance(true);
 
     }
 
@@ -80,9 +81,14 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
 
         super.onViewCreated(view, savedInstanceState);
 
+        presenter = new PostListPresenter();
+
         presenter.setView(this, this);
 
-        getList(0);
+        if (savedInstanceState == null)
+            getList(0);
+        else
+            setEmptyViewVisibility();
 
     }
 
@@ -91,8 +97,6 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-
-        adapter = new PostsAdapter(this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
@@ -172,9 +176,8 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
     @Override
     public void onPostClick(PostUIModel post) {
 
-        String postString = BaseUtils.getObjectAsJson(post);
-
-        startActivity(PostDetailActivity.getCallingIntent(getActivity(), postString));
+        if (getActivity() instanceof MainActivity)
+            ((MainActivity) getActivity()).openPostDetail(post);
 
     }
 
@@ -186,7 +189,7 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
         adapter.clearAllPosts();
 
         swipeRefreshLayout.setEnabled(true);
-        
+
         swipeRefreshLayout.setRefreshing(false);
 
         setEmptyViewVisibility();

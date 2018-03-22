@@ -12,7 +12,7 @@
 
         <ImageView
             android:id="@+id/fragment_post_detail_thumbnail"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
@@ -25,9 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text=""
-            tools:text="TITLE"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:text="TITLE" />
 
     </LinearLayout>
 
