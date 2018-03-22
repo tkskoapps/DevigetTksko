@@ -5,11 +5,24 @@
     android:layout_height="match_parent"
     tools:ignore="MissingPrefix">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/view_recycle_view_swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/view_recycle_view_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
     <LinearLayout
         android:id="@+id/view_recycle_view_empty_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="5dp"
+        android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
         tools:visibility="visible">
@@ -25,19 +38,15 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
+        <Button
+            android:id="@+id/view_recycle_view_button_reload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="@string/btn_reload_list" />
+
     </LinearLayout>
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/view_recycle_view_swipe_refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/view_recycle_view_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>
 

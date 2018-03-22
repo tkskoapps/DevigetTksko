@@ -160,6 +160,13 @@ public class PostListFragment extends BaseFragment<PostListPresenter> implements
 
     }
 
+    @OnClick(R.id.view_recycle_view_button_reload)
+    public void onReloadButtonClick() {
+
+        getList(0);
+
+    }
+
     @Override
     public void onSuccessGetPosts(List newPosts, boolean isFirstPage, String lastItemId) {
 
